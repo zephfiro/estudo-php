@@ -6,30 +6,32 @@
 </head>
 <body>
 
-<?php 
-/*$mensagem = '';
+<?php
 if(isset($_POST['enviarArquivo'])){
+	$count = 0;
 	$formatosPermitidos = array("png","jpeg", "jpg", "gif");
-	$extensao = pathinfo($_FILES['arquivo']['name'], PATHINFO_EXTENSION);
-	if (in_array($extensao, $formatosPermitidos)) {
-		$pasta = "arquivos/";
-		$temp = $_FILES['arquivo']['tmp_name'];
-		$novoNome = uniqid()."."."$extensao";
+	$qntdDeArquivos = count($_FILES['arquivo']['name']);
+	
 
-		if (move_uploaded_file($temp, $pasta.$novoNome)) {
-			$mensagem = "upload feito com sucesso";
+	while ($count < $qntdDeArquivos) {
+		$extensao = pathinfo($_FILES['arquivo']['name'][$count], PATHINFO_EXTENSION);
+		if (in_array($extensao, $formatosPermitidos)) {
+			$pasta = "arquivos/";
+			$temp = $_FILES['arquivo']['tmp_name'][$count];
+			$novoNome = uniqid()."."."$extensao";
+
+			if (move_uploaded_file($temp, $pasta.$novoNome)) {
+				echo "upload feito com sucesso para $pasta.$novoNome<br>";
+			}else{
+				echo 'erro ao enviar arquivo <br>';
+			}
 		}else{
-			$mensagem = "ERROR - nao foi possivel realizar o upload";
+			echo 'extensao nao permitida<br>';
 		}
-	}else{
-		$mensagem = "formatoInvalido";
+		$count++;
 	}
-}
-echo $mensagem;*/
-if (isset($_POST['enviarArquivo'])) {
 	
 }
-
 ?>
 
 
